@@ -1,5 +1,5 @@
 {
-  "name": "viraxpress/frontend-smile-elasticsuite",
+  "name": "magexperts/frontend-smile-elasticsuite",
   "description": "Magexperts_ViraSmileElasticsuite makes Smile_Elasticsuite compatible with Viraxpress Frontend Themes",
   "type": "magento2-module",
   "require": {
