@@ -1,0 +1,34 @@
+<?php
+declare(strict_types=1);
+?>
+<?php /** @var $block Smile\ElasticsuiteTracker\Block\Config **/ ?>
+<?php $jsonHelper = $block->getJsonHelper(); ?>
+<?php if ($block->isEnabled()) : ?>
+    <script>
+        //<![CDATA[
+        function userConsentEsTraking(config)
+        {
+            return config.cookieRestrictionEnabled == false || vira.getCookie(config.cookieRestrictionName) !== null;
+        }
+
+        try {
+            smileTracker.setConfig({
+                beaconUrl     : '<?= /* @noEscape */ $this->escapeJsQuote($block->getBeaconUrl()); ?>',
+                telemetryUrl     : '<?= /* @noEscape */ $this->escapeJsQuote($block->getTelemetryUrl()); ?>',
+                telemetryEnabled : '<?= /* @noEscape */ $this->escapeJsQuote($block->isTelemetryEnabled()); ?>',
+                sessionConfig : <?= /* @noEscape */ $jsonHelper->jsonEncode($block->getCookieConfig()); ?>,
+            });
+
+            smileTracker.addPageVar('store_id', '<?= /* @noEscape */ $this->escapeJsQuote($block->getStoreId());?>');
+
+            document.addEventListener('DOMContentLoaded', function () {
+                if (userConsentEsTraking(<?= /* @noEscape */ $jsonHelper->jsonEncode($block->getUserConsentConfig()); ?>)) {
+                    smileTracker.sendTag();
+                }
+            });
+        } catch (err) {
+            ;
+        }
+        //]]>
+    </script>
+<?php endif; ?>

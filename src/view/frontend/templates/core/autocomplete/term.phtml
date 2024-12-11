@@ -1,0 +1,18 @@
+<?php
+
+declare(strict_types=1);
+
+/**
+ * @var Magento\Framework\Escaper $escaper
+ * @var Magento\Framework\View\Element\Template $block
+ */
+?>
+
+<template x-if="searchResult.type == 'term'">
+    <a class="w-full block p-2"
+       x-bind:href="'<?= $escaper->escapeUrl($block->getData('suggestion_url')) ?>' + searchResult.title"
+       :title="searchResult.title">
+        <span class="text-sm" x-text="searchResult.title"></span>
+        <span class="text-sm" x-text="'(' + searchResult.num_results + ')'"></span>
+    </a>
+</template>

@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <attribute name="class" value="page-with-filter"/>
+        <referenceContainer name="sidebar.main">
+            <block class="Magento\LayeredNavigation\Block\Navigation\Search" name="catalogsearch.leftnav" before="-"
+                   template="Magexperts_ViraSmileElasticsuite::catalog/layer/view.phtml">
+                <block class="Magento\LayeredNavigation\Block\Navigation\State" name="catalogsearch.navigation.state" as="state" />
+                <block class="Smile\ElasticsuiteCatalog\Block\Navigation\FilterRenderer"
+                       name="catalogsearch.navigation.renderer"
+                       as="renderer">
+
+                    <block class="Smile\ElasticsuiteCatalog\Block\Navigation\Renderer\Attribute"
+                           name="catalogsearch.navigation.renderer.attribute"
+                           template="Magexperts_ViraSmileElasticsuite::catalog/layer/filter/attribute.phtml"
+                           after="-">
+                        <block class="Magento\Framework\View\Element\Template"
+                               name="attribute-filter-js"
+                               template="Magexperts_ViraSmileElasticsuite::catalog/layer/filter/js/attribute-filter-js.phtml"
+                        />
+                    </block>
+
+                    <block class="Smile\ElasticsuiteCatalog\Block\Navigation\Renderer\Category"
+                           name="catalogsearch.navigation.renderer.category"
+                           template="Magexperts_ViraSmileElasticsuite::catalog/layer/filter/default.phtml"/>
+
+                    <block class="Smile\ElasticsuiteCatalog\Block\Navigation\Renderer\Slider"
+                           name="catalogsearch.navigation.renderer.slider"
+                           template="Magexperts_ViraSmileElasticsuite::catalog/layer/filter/slider.phtml">
+                        <block class="Magento\Framework\View\Element\Template"
+                               name="renderer.slider"
+                               template="Magexperts_ViraSmileElasticsuite::catalog/layer/filter/js/slider-filter-js.phtml"/>
+                    </block>
+
+                    <block class="Smile\ElasticsuiteCatalog\Block\Navigation\Renderer\PriceSlider"
+                           name="catalogsearch.navigation.renderer.price.slider"
+                           template="Magexperts_ViraSmileElasticsuite::catalog/layer/filter/slider.phtml">
+                        <block class="Magento\Framework\View\Element\Template"
+                               name="renderer.price.slider"
+                               template="Magexperts_ViraSmileElasticsuite::catalog/layer/filter/js/slider-filter-js.phtml">
+                        </block>
+                    </block>
+                    <block class="Smile\ElasticsuiteSwatches\Block\Navigation\Renderer\Swatches"
+                      name="catalog.navigation.renderer.swatches" />
+                </block>
+            </block>
+        </referenceContainer>
+
+        <referenceContainer name="content">
+            <block class="Smile\ElasticsuiteCatalog\Block\CatalogSearch\Result\Cache"
+                   name="smile.elasticsuite.catalogsearch.result.cache"
+                   as="smile.elasticsuite.catalogsearch.result.cache"
+            />
+        </referenceContainer>
+    </body>
+</page>

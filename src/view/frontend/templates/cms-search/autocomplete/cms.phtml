@@ -1,0 +1,10 @@
+<?php
+
+declare(strict_types=1);
+?>
+
+<template x-if="searchResult.type == 'cms_page'">
+    <a class="w-full block p-2" :href="searchResult.url" :title="searchResult.title">
+        <span class="text-sm" x-text="searchResult.title"></span>
+    </a>
+</template>

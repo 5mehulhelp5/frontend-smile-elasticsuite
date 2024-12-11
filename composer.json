@@ -1,0 +1,26 @@
+{
+  "name": "viraxpress/frontend-smile-elasticsuite",
+  "description": "Magexperts_ViraSmileElasticsuite makes Smile_Elasticsuite compatible with Viraxpress Frontend Themes",
+  "type": "magento2-module",
+  "require": {
+    "magento/framework": ">=103.0.0",
+    "smile/elasticsuite": "~2.10.9|~2.11.0"
+  },
+  "authors": [{
+      "name": "Viraxpress Frontend Themes, Magexperts",
+      "email": "5mehulhelp5@gmail.com"
+  },{
+      "name": "Elasticsuite core team",
+      "email": "elasticsuite@smile.fr"
+  }
+  ],
+  "license": "see LICENSE.md",
+  "autoload": {
+    "files": [
+      "src/registration.php"
+    ],
+    "psr-4": {
+      "Magexperts\\ViraSmileElasticsuite\\": "src/"
+    }
+  }
+}

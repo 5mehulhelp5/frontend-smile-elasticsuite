@@ -1,0 +1,63 @@
+<?php
+
+/** @var FilterRenderer $block */
+/** @var Escaper$escaper */
+/** @var array $filterItems */
+/** @var Data $catalogHelper */
+/** @var LocaleFormatter $localeFormatter */
+
+use Magento\Catalog\Helper\Data;
+use Magento\Framework\Escaper;
+use Smile\ElasticsuiteCatalog\Block\Navigation\FilterRenderer;
+
+$catalogHelper = $this->helper('\Magento\Catalog\Helper\Data');
+?>
+
+<ol class="items" aria-label="<?= $escaper->escapeHtmlAttr(__('%1 filter options', $this->getFilter()->getName())) ?>">
+    <?php foreach ($filterItems as $filterItem): ?>
+        <li class="item my-1">
+            <?php if ($filterItem->getCount() > 0): ?>
+                <a
+                    href="<?= $escaper->escapeUrl($filterItem->getUrl()) ?>"
+                    class="flex items-center"
+                >
+                    <?php $selected = $filterItem->getIsSelected(); ?>
+                    <?php if ($this->isMultipleSelectEnabled()) : ?>
+                        <span class="rounded-sm border mr-2 <?= $selected ? 'bg-primary border-primary' : 'border-gray-400'; ?>">
+                            <svg
+                                fill="none"
+                                class="stroke-2 stroke-white <?= $selected ? 'opacity-100' : 'opacity-0'; ?>"
+                                width="16"
+                                height="16"
+                                viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg"
+                                aria-hidden="true"
+                            >
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"></path>
+                            </svg>
+                        </span>
+                    <?php endif; ?>
+                    <?= $filterItem->getLabel() ?>
+                    <?php if ($catalogHelper->shouldDisplayProductCountOnLayer()): ?>
+                        (<span class="count"><?= $filterItem->getCount()?></span>
+                        <span class="sr-only"><?= $escaper->escapeHtml(__('products available')) ?></span>)
+
+                    <?php endif; ?>
+                    <?php if ($selected): ?>
+                        <span class="sr-only">
+                            <?= $escaper->escapeHtml(__('filter selected')) ?>
+                        </span>
+                    <?php endif; ?>
+                </a>
+            <?php else: ?>
+                <?= $filterItem->getLabel() ?>
+                <?php if ($catalogHelper->shouldDisplayProductCountOnLayer()): ?>
+                    (<span class="count"><?= $filterItem->getCount()?></span>
+                    <span class="sr-only">
+                        <?= $escaper->escapeHtml(__('products available')) ?>
+                    </span>)
+                <?php endif; ?>
+            <?php endif; ?>
+        </li>
+    <?php endforeach ?>
+</ol>
