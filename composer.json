@@ -14,7 +14,6 @@
       "email": "elasticsuite@smile.fr"
   }
   ],
-  "license": "see LICENSE.md",
   "autoload": {
     "files": [
       "src/registration.php"
